@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Trash2, Plus, Minus, ShoppingCart } from "lucide-react"
+import Link from "next/link"
 import {
   Sheet,
   SheetContent,
@@ -140,9 +141,12 @@ export default function CartSheet() {
                 <span>${subtotal.toFixed(2)}</span>
               </div>
 
-              <button className="w-full mt-4 bg-[#ff9167] text-white py-3 rounded-lg">
+              <Link
+                href="/checkout"
+                className="block text-center w-full mt-4 bg-[#ff9167] text-white py-3 rounded-lg"
+              >
                 Checkout
-              </button>
+              </Link>
 
             </div>
           )}

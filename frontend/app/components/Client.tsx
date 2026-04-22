@@ -12,19 +12,19 @@ const slides = [
     tag: "Yummy & Tasty",
     title: "We Make The Best Food",
     desc: "Sedquis nis eleentum rhncus sit amet in nisi.",
-    img: "/images/image.png"
+    img: "/images/bg.png"
   },
   {
     tag: "Fresh & Healthy",
     title: "Natural Meals For Your Dog",
     desc: "Premium grain-free recipes packed with real meat.",
-    img: "/images/image.png"
+    img: "/images/bg2.png"
   },
   {
     tag: "Pure & Organic",
     title: "Treats They Can't Resist",
     desc: "Hand-crafted treats your pet will love.",
-    img: "/images/image.png"
+    img: "/images/bg3.png"
   }
 ]
 
@@ -79,8 +79,13 @@ export default function HeroSlider() {
   return (
     <>
 
-      <section className="relative bg-[#ff9e77] min-h-160 flex items-center px-6 md:px-16 overflow-hidden">
+      <section className="relative bg-[#ff9e77] min-h-screen flex items-center px-6 md:px-16 overflow-hidden"
+        style={{
+          backgroundImage: `url(${slide.img})`,
+          backgroundSize: "cover"
 
+        }}
+      >
         {/* Canvas Bubble */}
         <canvas
           ref={canvasRef}
@@ -144,21 +149,21 @@ export default function HeroSlider() {
             SHOP NOW
           </motion.button>
         </motion.div>
-        <div
-  className="absolute right-2 md:right-30 top-28 md:top-8 w-52 h-52 md:w-110 md:h-110 shadow-2xl overflow-hidden z-10 rounded-full"
-  style={{
-    background: 'rgba(251, 184, 159, 0.4)',
-    clipPath: 'inset(13% round 80%)',
-  }}
->
-  <div className="w-full h-full flex items-center justify-center p-6 md:p-12">
-    <img
-      src={slide.img}
-      alt={slide.title}
-      className="object-contain max-w-full max-h-full drop-shadow-2xl"
-    />
-  </div>
-</div>
+        {/* <div
+          className="absolute right-2 md:right-30 top-28 md:top-8 w-52 h-52 md:w-110 md:h-110 shadow-2xl overflow-hidden z-10 rounded-full"
+          style={{
+            background: 'rgba(251, 184, 159, 0.4)',
+            clipPath: 'inset(13% round 80%)',
+          }}
+        >
+          <div className="w-full h-full flex items-center justify-center p-6 md:p-12">
+            <img
+              src={slide.img}
+              alt={slide.title}
+              className="object-contain max-w-full max-h-full drop-shadow-2xl"
+            />
+          </div>
+        </div> */}
 
 
         {/* Vertical Dots */}
@@ -183,7 +188,7 @@ export default function HeroSlider() {
 
         {/* Curved Waves */}
         <svg
-          className="absolute bottom-0 left-0 w-full"
+          className="absolute bottom-0 left-0 w-full "
           viewBox="0 0 1440 200"     //viewBox = "min-x min-y width height" 
         >
           <path

@@ -72,7 +72,7 @@ export default function ProductDetailClient({ product }: Props) {
                             </h1>
 
                             <p className="text-3xl font-bold text-[#df6839]">
-                                ${product.price}
+                                ${product.price.toFixed(2)}
                             </p>
 
                             {/* COLOR SELECTOR */}

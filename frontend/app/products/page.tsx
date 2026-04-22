@@ -1,7 +1,8 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import { products, Product } from '@/data/products';
+import { products } from '@/data/products';
+import type { Product } from '@/data/products';
 
 const ProductsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -197,8 +197,8 @@
 
 
 import { notFound } from 'next/navigation'
-import { products, Product } from '@/data/products'
 import ProductDetailClient from '@/app/components/ProductDetailClient'
+import { products, Product } from '@/data/products'
 
 interface Props {
   params: Promise<{ id: string }>

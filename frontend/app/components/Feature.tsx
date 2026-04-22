@@ -36,7 +36,7 @@ className="relative flex-1 flex items-center justify-start md:justify-center z-1
       >
         {/* Circular image container */}
 <div className="relative w-[220px] h-[220px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden flex items-center justify-center">          <img
-            src="/images/image.png"
+            src="/images/belts/f1.png"
             alt="Person with dog"
             className="absolute inset-0 w-full h-full object-contain filter opacity-40"
           />
@@ -101,14 +101,14 @@ className="relative flex-1 flex items-center justify-start md:justify-center z-1
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <img
-          src="/images/image.png"
+        {/* <img
+          src="/images/belts/f2.png"
           alt="Pet food bag"
-          className="w-32 h-32 object-contain opacity-30 filter"
+          className="w-32 h-32 object-contain opacity-50 filter"
           style={{ transform: "rotate(-15deg)" }}
-        />
+        /> */}
         <img
-          src="/images/image.png"
+          src="/images/belts/f3.png"
           alt="Cat"
           className="w-48 h-48 object-contain opacity-20 filter"
         />

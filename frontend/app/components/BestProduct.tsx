@@ -92,7 +92,7 @@ const BestProduct = () => {
                         inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-16"
                     }`}
                 >
-                    <img src="/images/image.png" alt="dog image" />
+                    <img src="/images/products/f13.png" alt="dog image" />
                 </div>
 
                 {/* ── Right column — content slides in from right ── */}

@@ -36,20 +36,20 @@ export const products: Product[] = [
     {
       color: "Olive",
       images: [
-        "/images/belts/image.png",
-        "/images/belts/image copy.png"
+        "/images/products/p1.png",
+        "/images/products/p2.png"
       ]
     },
     {
       color: "Tan",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p3.png"
       ]
     },
     {
       color: "Black",
       images: [
-        "/images/belts/image copy.png"
+        "/images/products/p4.png"
       ]
     }
   ]
@@ -75,19 +75,19 @@ export const products: Product[] = [
     {
       color: "Brown",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p5.png"
       ]
     },
     {
       color: "Dark Brown",
       images: [
-        "/images/belts/image copy.png"
+        "/images/products/p6.png"
       ]
     },
     {
       color: "Black",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p7.png"
       ]
     }
   ]
@@ -113,19 +113,19 @@ export const products: Product[] = [
     {
       color: "Neon Green",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p8.png"
       ]
     },
     {
       color: "Orange",
       images: [
-        "/images/belts/image copy.png"
+        "/images/products/p8.png"
       ]
     },
     {
       color: "Yellow",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p8.png"
       ]
     }
   ]
@@ -151,19 +151,19 @@ export const products: Product[] = [
     {
       color: "Black",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p9.png"
       ]
     },
     {
       color: "Army Green",
       images: [
-        "/images/belts/image copy.png"
+        "/images/products/p9.png"
       ]
     },
     {
       color: "Desert Tan",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p9.png"
       ]
     }
   ]
@@ -189,19 +189,19 @@ export const products: Product[] = [
     {
       color: "Pink",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p10.png"
       ]
     },
     {
       color: "Sky Blue",
       images: [
-        "/images/belts/image copy.png"
+        "/images/products/p10.png"
       ]
     },
     {
       color: "Purple",
       images: [
-        "/images/belts/image.png"
+        "/images/products/p10.png"
       ]
     }
   ]

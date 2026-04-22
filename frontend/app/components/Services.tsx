@@ -58,24 +58,24 @@ const services: Service[] = [
 
 const posts: Post[] = [
     {
-        image: "/images/image.png",
-        author: "Marten Admin",
+        image: "/images/belts/f1.png",
+        author: "Babu Bista",
         date: "Aug 11, 2024",
         title: "How to Choose the Right Collar for Your Dog",
         category: "Guide",
         delay: "delay-0",
     },
     {
-        image: "/images/image.png",
-        author: "Marten Admin",
+        image: "/images/belts/f2.png",
+        author: "Ram Bista",
         date: "Aug 11, 2024",
         title: "Leather vs Nylon: Which Collar Is Best?",
         category: "Tips",
         delay: "delay-150",
     },
     {
-        image: "/images/image.png",
-        author: "Marten Admin",
+        image: "/images/belts/f3.png",
+        author: "Baburam Bista",
         date: "Aug 11, 2024",
         title: "Top 5 Signs Your Dog Needs a New Collar",
         category: "Care",
@@ -188,7 +188,7 @@ function BlogCard({ p, inView }: { p: Post; inView: boolean }) {
                 <img
                     src={p.image}
                     alt={p.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     style={{
                         transform: hovered ? "scale(1.09)" : "scale(1)",
                         transition: "transform 0.7s cubic-bezier(0.22,1,0.36,1)",

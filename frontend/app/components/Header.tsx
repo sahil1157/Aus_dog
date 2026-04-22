@@ -1,16 +1,24 @@
 'use client';
-import { Menu, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import CartSheet
   from "./cart-sheet";
+import { useAuth } from "@/context/auth-context";
 export default function Header() {
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const { isAuthenticated, user, logout } = useAuth()
+  const [mounted, setMounted] = useState(false)
 
+useEffect(() => {
+  setMounted(true)
+}, [])
+
+  
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -28,9 +36,12 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+
+
   return (
-    <header className={`bg-[#ff9167] shadow-md sticky top-0 z-50 ${showNavbar ? "translate-y-0" : "-translate-y-full"} transition-transform duration-300 h-20`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+<header
+  className={`bg-gray-300 shadow-md sticky top-0 z-50 ${showNavbar ? "translate-y-0" : "-translate-y-full"} transition-transform duration-300 h-20`}>   
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
 
         <div className="flex items-center justify-between py-4">
 
@@ -56,56 +67,53 @@ export default function Header() {
               <Link href="/products" className="text-gray-900 font-medium px-3 py-1 rounded transition-all duration-300 
              hover:text-black hover:border-2 hover:rounded-2xl hover:border-black">PRODUCTS</Link>
 
-
-              {/* <div className="relative group">
-                <button
-                  className="text-gray-900 font-medium px-3 py-1 rounded-2xl border-2 border-transparent transition-all duration-300
-             hover:text-[#7644a2] hover:border-[#6f2e18] cursor-pointer"
-                >
-                  AIRSHOW EXPO/EXHIBITION
-                </button>
-
-                <div className="absolute left-0 mt-2 w-56 bg-[#cbc1c1] border rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                  <Link
-                    href="/singapore"
-                    className="block w-full text-left px-3 py-1 rounded-2xl border-2 border-transparent text-gray-900 font-medium
-             transition-all duration-300 hover:text-[#7644a2] hover:border-[#6f2e18]"
-                  >
-                    Singapore 2024
-                  </Link>
-
-                  <Link
-                    href="/dubai"
-                    className="block w-full text-left px-3 py-1 rounded-2xl border-2 border-transparent text-gray-900 font-medium
-             transition-all duration-300 hover:text-[#7644a2] hover:border-[#6f2e18]"
-                  >
-                    Dubai 2023
-                  </Link>
-                  <Link
-                    href="/france"
-                    className="block w-full text-left px-3 py-1 rounded-2xl border-2 border-transparent text-gray-900 font-medium
-             transition-all duration-300 hover:text-[#7644a2] hover:border-[#6f2e18]"
-                  >
-                    Eurosatory, France
-                  </Link>
-
-
-                </div>
-              </div> */}
-
-
-
-              {/* <Link href="/exhibition" className="text-gray-900 font-medium px-3 py-1 rounded transition-all duration-300 
-             hover:text-[#7644a2] hover:border-2 hover:rounded-2xl hover:border-yellow-400">AIRSHOW EXPO/EXHIBITION</Link> */}
-
               <Link href="/contact" className="text-gray-900 font-medium px-3 py-1 rounded transition-all duration-300 
               hover:border-2 hover:rounded-2xl hover:text-black hover:border-black">CONTACT US</Link>
 
 
             </nav>
 
-            {/* LEFT — Cart */}
-            <div className="hidden md:flex">
+            {/* Right — User + Cart */}
+            <div className="hidden md:flex items-center gap-4">
+              <div className="relative group">
+                <button
+                  className="flex items-center gap-2 text-gray-900 font-medium px-3 py-2 rounded-lg hover:bg-white/30 transition"
+                  aria-label="User menu"
+                >
+                  <User size={18} />
+                  <span className="text-sm">
+{mounted && isAuthenticated ? (user?.username ?? "Account") : "Account"}                  </span>
+                </button>
+
+                <div className="absolute right-0 mt-2 w-56 bg-white border rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 overflow-hidden">
+                  {!mounted ? null : !isAuthenticated ? (
+  <div className="p-2">
+    <Link
+      href="/login"
+      className="block px-3 py-2 rounded-lg hover:bg-gray-100 font-medium"
+    >
+      Login
+    </Link>
+    <Link
+      href="/register"
+      className="block px-3 py-2 rounded-lg hover:bg-gray-100 font-medium"
+    >
+      Create account
+    </Link>
+  </div>
+) : (
+  <div className="p-2">
+    <button
+      onClick={logout}
+      className="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 font-medium"
+    >
+      Logout
+    </button>
+  </div>
+)}
+                </div>
+              </div>
+
               <CartSheet />
             </div>
 
@@ -151,6 +159,32 @@ export default function Header() {
       >
         Contact
       </Link>
+
+      <div className="pt-2 border-t">
+        {!isAuthenticated ? (
+          <div className="flex gap-3">
+            <Link
+              href="/login"
+              className="flex-1 text-center bg-[#ee6d49] text-white py-2 rounded-lg font-semibold"
+            >
+              Login
+            </Link>
+            <Link
+              href="/register"
+              className="flex-1 text-center border py-2 rounded-lg font-semibold"
+            >
+              Register
+            </Link>
+          </div>
+        ) : (
+          <button
+            onClick={logout}
+            className="w-full text-left text-gray-700 font-semibold"
+          >
+            Logout
+          </button>
+        )}
+      </div>
     </nav>
   </div>
 )}

@@ -27,7 +27,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             alt={product.name}
             width={400}
             height={300}
-            className="w-full h-64 object-contain group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
           />
         </div>
 
@@ -64,7 +64,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {/* Price + Button */}
           <div className="flex items-center justify-between mt-6 pt-4 border-t">
             <span className="text-xl font-bold text-[#ee6d49]">
-              ${product.price}
+              ${product.price.toFixed(2)}
             </span>
 
             <button className="bg-[#ee6d49] text-white px-4 py-2 rounded-lg hover:bg-[#ed572e] transition-all flex items-center gap-1 text-sm font-medium shadow-md hover:shadow-lg">

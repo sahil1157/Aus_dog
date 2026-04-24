@@ -115,7 +115,15 @@ const values = [
 ];
 
 // Auto Slider Component for Mission Cards - No Play/Pause button
-function MissionSlider({ missions }: { missions: typeof missions }) {
+type Mission = {
+  icon: React.ElementType;
+  title: string;
+  desc: string;
+  color: string;
+  bg: string;
+};
+
+function MissionSlider({ missions }: { missions: Mission[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);

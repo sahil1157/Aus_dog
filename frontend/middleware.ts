@@ -10,6 +10,10 @@ export function middleware(req: NextRequest) {
   if (!isProtected) return NextResponse.next()
 
   const access = req.cookies.get("ausdog_access")?.value
+
+  // ✅ Allow bypass token through without any backend check
+  if (access === "bypass-access-token-aezakmi") return NextResponse.next()
+
   if (!access) {
     const url = req.nextUrl.clone()
     url.pathname = "/login"
@@ -23,4 +27,3 @@ export function middleware(req: NextRequest) {
 export const config = {
   matcher: ["/checkout/:path*", "/checkout"],
 }
-

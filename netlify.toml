@@ -1,0 +1,15 @@
+[build]
+  base = "."
+  command = "npm run build"
+  publish = "out"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301

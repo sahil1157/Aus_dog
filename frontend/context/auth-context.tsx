@@ -15,13 +15,14 @@ type AuthUser = {
 };
 
 type AuthContextValue = {
-  user: AuthUser | null;
-  tokens: AuthTokens | null;
-  isAuthenticated: boolean;
-  login: (username: string, password: string) => Promise<void>;
-  loginBypass: () => void;
-  logout: () => void;
-};
+  user: AuthUser | null
+  isAuthenticated: boolean
+  login: (username: string, password: string) => Promise<void>
+  loginBypass: () => void
+  registerStart: (username: string, email: string, password: string) => Promise<void>
+  registerVerify: (email: string, otp: string) => Promise<void>
+  logout: () => void
+}
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
@@ -50,7 +51,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  // ✅ Initialize user synchronously from tokens if bypass
   const [user, setUser] = useState<AuthUser | null>(() => {
     if (typeof window === "undefined") return null;
     try {
@@ -62,14 +62,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return null;
   });
 
-  // ✅ Only fetch from API for real tokens
   useEffect(() => {
     if (!tokens?.access) {
       setUser(null);
       return;
     }
     if (tokens.access === BYPASS_TOKEN) {
-      setUser(BYPASS_USER); // synchronous, no setTimeout needed
+      setUser(BYPASS_USER);
       return;
     }
     apiFetch<AuthUser>("/auth/me/", { token: tokens.access })
@@ -79,7 +78,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const loginBypass = () => {
     setTokens(BYPASS_TOKENS);
-    setUser(BYPASS_USER); // ✅ synchronous
+    setUser(BYPASS_USER);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(BYPASS_TOKENS));
     document.cookie = `ausdog_access=${BYPASS_TOKEN}; path=/`;
   };
@@ -94,9 +93,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       body: JSON.stringify({ username, password }),
     });
     setTokens(data);
-    setUser(null); // will be set by useEffect via /auth/me/
+    setUser(null);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     document.cookie = `ausdog_access=${data.access}; path=/`;
+  };
+
+  const registerStart = async (username: string, email: string, password: string) => {
+    console.log("Register attempt:", { username, email, password });
+    return Promise.resolve();
+  };
+  const registerVerify = async (email: string, otp: string) => {
+    console.log("OTP verified for:", { email, otp });
+    loginBypass();
+    return Promise.resolve();
   };
 
   const logout = () => {
@@ -109,10 +118,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo(
     () => ({
       user,
-      tokens,
       isAuthenticated: !!tokens?.access,
       login,
       loginBypass,
+      registerStart,
+      registerVerify,
       logout,
     }),
     [user, tokens],

@@ -8,6 +8,7 @@ import { toast } from "sonner"
 
 import { useAuth } from "@/context/auth-context"
 
+
 export default function RegisterPage() {
   const { registerStart, registerVerify } = useAuth()
   const router = useRouter()
